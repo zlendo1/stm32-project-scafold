@@ -1,0 +1,81 @@
+# ============================================================
+# .gitignore for STM32CubeMX generated project
+# ============================================================
+
+# ----- Build output -----
+build/
+Debug/
+Release/
+*.elf
+*.bin
+*.hex
+*.map
+*.lst
+*.axf
+
+# ----- Object files & dependency files -----
+*.o
+*.d
+*.su
+
+# ----- IDE: STM32CubeIDE -----
+.cproject
+.project
+.settings/
+.metadata/
+
+# ----- IDE: Keil MDK (uVision) -----
+*.uvoptx
+*.uvguix
+*.scvd
+Listings/
+Objects/
+RTE/
+
+# ----- IDE: IAR Embedded Workbench -----
+*.ewt
+*.ewd
+settings/
+*.dep
+*.xcl
+*.cspy.*
+*.dbgdt
+Debug/
+Release/
+
+# ----- IDE: VS Code -----
+.vscode/
+
+# ----- CubeMX generated / regenerated files -----
+# Uncomment the lines below ONLY if you want to track the .ioc
+# but exclude all generated source so you regenerate locally.
+# Core/
+# Drivers/
+# Middlewares/
+# USB_DEVICE/
+# FATFS/
+# LWIP/
+# MBEDTLS/
+
+# CubeMX backup files
+*.bak
+*.orig
+
+# ----- Toolchain: GCC / Makefile -----
+*.d
+*.su
+
+# ----- JLink / OpenOCD / ST-Link debug -----
+*.jlink
+JLinkLog.txt
+JLinkSettings.ini
+openocd.log
+
+# ----- General -----
+*.log
+*.tmp
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
