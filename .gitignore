@@ -1,20 +1,9 @@
 # ============================================================
-# .gitignore for STM32CubeMX project
+# .gitignore for STM32F3DISCOVERY CMake project
 # ============================================================
-# Philosophy: Track source code and project config, ignore all
-# generated/regeneratable files. CubeMX can regenerate everything
-# from the .ioc file except user code in Core/.
-
-# =============================================================
-# TRACKED (not ignored):
-# =============================================================
-# - Core/              User source code
-# - *.ioc              CubeMX project file (regenerates everything)
-# - CMakeLists.txt     CMake build config
-# - CMakePresets.json  CMake presets
-# - cmake/             CMake modules
-# - STM32*.ld          Linker script (may contain user modifications)
-# - startup_*.s        Startup assembly (may contain user modifications)
+# Track source code and project config. Ignore all generated /
+# regeneratable files. CubeMX regenerates Drivers/ and Middlewares/
+# from the .ioc file; user code lives in Core/.
 
 # =============================================================
 # CubeMX GENERATED (regenerated from .ioc)

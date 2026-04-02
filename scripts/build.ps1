@@ -27,8 +27,16 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-# Project configuration
-$ProjectName = "stm32-setup-test"
+$ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+$ProjectRoot = Split-Path -Parent $ScriptDir
+
+$CMakeContent = Get-Content (Join-Path $ProjectRoot "CMakeLists.txt") -Raw
+if ($CMakeContent -match 'set\(CMAKE_PROJECT_NAME\s+([^)]+)\)') {
+    $ProjectName = $Matches[1].Trim()
+} else {
+    Write-Error-Custom "Could not detect project name from CMakeLists.txt"
+}
+
 $BuildDir = "build"
 $BinaryName = "$ProjectName.elf"
 $BinaryPath = Join-Path $BuildDir $Preset $BinaryName

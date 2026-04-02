@@ -1,6 +1,8 @@
 # Build Scripts
 
-Build, flash, and debug automation for the STM32F3DISCOVERY project.
+Build, flash, and debug automation for STM32F3DISCOVERY projects.
+
+The project name is auto-detected from `CMakeLists.txt` (`CMAKE_PROJECT_NAME`).
 
 ## Prerequisites
 
@@ -80,21 +82,21 @@ cmake --preset Debug        # Configure (or Release)
 cmake --build build/Debug   # Build
 ```
 
-Output: `build/Debug/stm32-setup-test.elf`
+Output: `build/Debug/<project-name>.elf`
 
 ### Flashing
 
 #### Method 1: OpenOCD (recommended)
 
 ```bash
-openocd -f board/stm32f3discovery.cfg -c "program build/Debug/stm32-setup-test.elf verify reset exit"
+openocd -f board/stm32f3discovery.cfg -c "program build/Debug/<project-name>.elf verify reset exit"
 ```
 
 #### Method 2: st-flash
 
 ```bash
-arm-none-eabi-objcopy -O binary build/Debug/stm32-setup-test.elf build/Debug/stm32-setup-test.bin
-st-flash write build/Debug/stm32-setup-test.bin 0x8000000
+arm-none-eabi-objcopy -O binary build/Debug/<project-name>.elf build/Debug/<project-name>.bin
+st-flash write build/Debug/<project-name>.bin 0x8000000
 ```
 
 ### Debugging
@@ -108,7 +110,7 @@ openocd -f board/stm32f3discovery.cfg
 2. In another terminal, run GDB:
 
 ```bash
-arm-none-eabi-gdb build/Debug/stm32-setup-test.elf
+arm-none-eabi-gdb build/Debug/<project-name>.elf
 ```
 
 3. GDB commands:

@@ -14,8 +14,19 @@ else
     NC=''
 fi
 
+# Resolve project root (one level up from scripts/)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+
+# Auto-detect project name from CMakeLists.txt
+PROJECT_NAME=$(sed -n 's/^set(CMAKE_PROJECT_NAME \(.*\))$/\1/p' "$PROJECT_ROOT/CMakeLists.txt")
+if [[ -z "$PROJECT_NAME" ]]; then
+    log_error "Could not detect project name from CMakeLists.txt"
+    log_info "Expected: set(CMAKE_PROJECT_NAME <name>) in CMakeLists.txt"
+    exit 1
+fi
+
 # Configuration
-PROJECT_NAME="stm32-setup-test"
 BINARY_NAME="${PROJECT_NAME}.elf"
 FLASH_ADDRESS="0x8000000"
 OPENOCD_CONFIG="board/stm32f3discovery.cfg"
@@ -107,7 +118,7 @@ parse_args() {
                 FLASH_TOOL="${1#*=}"
                 shift
                 ;;
-            build|flash|debug|clean)
+            build|flash|debug|clean|help)
                 COMMAND="$1"
                 shift
                 ;;
